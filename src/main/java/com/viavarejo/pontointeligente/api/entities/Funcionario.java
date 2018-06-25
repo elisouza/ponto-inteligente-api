@@ -89,6 +89,12 @@ public class Funcionario implements Serializable{
 	public BigDecimal getValorHora() {
 		return valorHora;
 	}
+	
+	@Transient
+	public Optional<BigDecimal> getValorHoraOpt() {
+		return Optional.ofNullable(valorHora);
+	}
+	
 	public void setValorHora(BigDecimal valorHora) {
 		this.valorHora = valorHora;
 	}
@@ -146,7 +152,7 @@ public class Funcionario implements Serializable{
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
-	
+		
 	@OneToMany(mappedBy = "funcionario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public List<Lancamento> getLancamentos() {
 		return lancamentos;
@@ -154,6 +160,10 @@ public class Funcionario implements Serializable{
 	public void setLancamentos(List<Lancamento> lancamentos) {
 		this.lancamentos = lancamentos;
 	}	
+	@Transient
+	public Optional<Float> getQtdHorasTrabalhoDiaOpt() {
+		return Optional.ofNullable(qtdHorasTrabalhoDia);
+	}
 
 	@PreUpdate
     public void preUpdate() {
